@@ -56,7 +56,7 @@ class System(commands.Cog):
 
         await sendmsg(
             ctx,
-            f'**CPU usag**: `{psutil.cpu_percent(0.1)}%`'
+            f'**CPU usage**: `{psutil.cpu_percent(0.1)}%`'
         )
 
     @commands.command()

@@ -23,6 +23,7 @@ class Regex:
     uppercase = re.compile(r'[A-Z]')
     lowercase = re.compile(r'[a-z]')
     numbers = re.compile(r'[0-9]')
+    ip = re.compile(r'[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
 
 async def get_entropy(
     string: str

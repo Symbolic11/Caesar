@@ -40,7 +40,11 @@ async def is_nitro(msg) -> bool:
     """
 
     body = msg.content
-    return ('discordapp.com/gifts/' in body or 'discord.gift/' in body or 'discord.com/gifts/' in body)
+    return (
+        'discordapp.com/gifts/' in body or 
+        'discord.gift/' in body or 
+        'discord.com/gifts/' in body
+    )
 
 async def is_giveaway(msg) -> bool:
     """
@@ -84,7 +88,16 @@ class Snipers(commands.Cog):
         self.paymentid_regex = re.compile(r'("id": ")([0-9]+)"')
         self.id_history = []
 
-    async def snipe(self, message):
+    async def snipe(self, message) -> None:
+        """
+        await snipe(message) -> nothing
+
+        Sniper function, snipers nitro, giveaways and slotbot drops
+
+        :param message selfcord.Message: Message object
+        :returns None: Nothing
+        """
+
         if await is_nitro(message) and self.nitrosniper_toggle:
             codes = self.nitrocode_regex.findall(message.content)
 
@@ -168,11 +181,12 @@ class Snipers(commands.Cog):
     @commands.Cog.listener()
     async def on_message_edit(self, message_before, message_after) -> None:
         """
-        await on_message_edit(message) -> nothing
+        await on_message_edit(message before edit, message after edit) -> nothing
 
         Event that runs when a message is edited
 
-        :param message selfcord.Message: Message object
+        :param message_before selfcord.Message: Message object, before edited
+        :param message_after selfcord.Message: Message object, after edited
         :returns None: Nothing
         """
         
@@ -183,7 +197,7 @@ class Snipers(commands.Cog):
             or message.author.id == self.client.user.id:
                 continue
 
-            if len(self.id_history) >= 50: # clean the list of messages up
+            if len(self.id_history) >= 5: # clean the list of messages up
                 self.id_history = []
 
             self.id_history.append(message.id)
@@ -207,7 +221,7 @@ class Snipers(commands.Cog):
             or message.author.id == self.client.user.id:
                 continue
 
-            if len(self.id_history) >= 50: # clean the list of messages up
+            if len(self.id_history) >= 5: # clean the list of messages up
                 self.id_history = []
 
             self.id_history.append(message.id)
@@ -246,7 +260,10 @@ class Snipers(commands.Cog):
 
         await sendmsg(
             ctx,
-            f'**Nitro sniper**: `{"disabled" if not self.nitrosniper_toggle else "enabled"}`',
+            (
+                f'**Nitro sniper**: `{"disabled" if not self.nitrosniper_toggle else "enabled"}`\n'
+                f'**Stealth mode**: `{"yes" if self.nitrosniper_stealth else "no"}`'
+            ),
             True
         )
     
@@ -282,7 +299,10 @@ class Snipers(commands.Cog):
 
         await sendmsg(
             ctx,
-            f'**Giveaway sniper**: `{"enabled" if self.giveawaysniper_toggle else "disabled"}`\n**Stealth mode**: `{"yes" if self.giveawaysniper_stealth else "no"}`',
+            (
+                f'**Giveaway sniper**: `{"enabled" if self.giveawaysniper_toggle else "disabled"}`\n'
+                f'**Stealth mode**: `{"yes" if self.giveawaysniper_stealth else "no"}`'
+            ),
             True
         )
     
@@ -318,7 +338,10 @@ class Snipers(commands.Cog):
 
         await sendmsg(
             ctx,
-            f'**Slotbot sniper**: `{"enabled" if self.slotbotsniper_toggle else "disabled"}`\n**Stealth mode**: `{"yes" if self.slotbotsniper_stealth else "no"}`',
+            (
+                f'**Slotbot sniper**: `{"enabled" if self.slotbotsniper_toggle else "disabled"}`\n'
+                f'**Stealth mode**: `{"yes" if self.slotbotsniper_stealth else "no"}`'
+            ),
             True
         )
 

@@ -714,6 +714,7 @@ class Fun(commands.Cog):
         
         await sendmsg(
             ctx,
+            '',
             delete_after=False,
             img=resp['message']
         )
@@ -742,6 +743,7 @@ class Fun(commands.Cog):
         
         await sendmsg(
             ctx,
+            '',
             delete_after=False,
             img=resp['image']
         )
@@ -770,6 +772,7 @@ class Fun(commands.Cog):
 
         await sendmsg(
             ctx,
+            '',
             delete_after=False,
             img=resp['link']
         )

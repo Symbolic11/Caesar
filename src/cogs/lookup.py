@@ -1,3 +1,5 @@
+import aiohttp
+
 from selfcord.ext import commands
 from bs4 import BeautifulSoup as bs
 
@@ -11,6 +13,52 @@ class Lookup(commands.Cog):
 
     def __init__(self, client: commands.Bot):
         self.client = client
+    
+    @commands.command(aliases=['lookupip'])
+    async def iplookup(self, ctx, *, ip) -> None:
+        """
+        Looks the specified IP up
+        """
+
+        """
+        await iplookup(context, ip) -> nothing
+
+        :param ctx object: Context
+        :param ip str: IPv4 address to look up
+        :returns None: Nothing
+        """
+
+        if ctx.message.author.id != self.client.user.id:
+            return
+        
+        if not bool(Regex.ip.match(ip)):
+            return await sendmsg(ctx, '**Error**: `Invalid IPv4`')
+        
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get(f'http://ip-api.com/json/{ip}?fields=18079743') as resp:
+                res = await resp.json()
+        
+        if res['status'] == 'fail':
+            msg = f'**Errror**: `{res["message"]}`'
+        else:
+            msg = (
+                f'**IP**: `{ip}`\n'
+                f'**ISP**: `{res["isp"]}`\n'
+                f'**ASN**: `{res["as"]}`\n'
+                f'**Organization**: `{res["org"]}`\n'
+                f'**Location**: `{res["city"]}, {res["regionName"]}, {res["continent"]}`\n'
+                f'**Zip code**: `{res["zip"]}`\n'
+                f'**Reverse lookup**: `{res["reverse"]}`\n'
+                f'**Latitude & longitude**: `{res["lat"]}, {res["lon"]}`\n'
+                f'**Is mobile?**: `{"Yes" if res["mobile"] else "No"}`\n'
+                f'**Is proxy?**: `{"Yes" if res["proxy"] else "No"}`\n'
+                f'**Is hosting?**: `{"Yes" if res["hosting"] else "No"}`'
+            )
+        
+        await sendmsg(
+            ctx,
+            msg
+        )
     
     @commands.command(aliases=['githubinfo'])
     async def github(self, ctx, *, user) -> None:
@@ -30,7 +78,6 @@ class Lookup(commands.Cog):
 
         if ctx.message.author.id != self.client.user.id:
             return
-
 
         if not user.startswith('http'):
             user = f"https://github.com/{user}"
