@@ -9,13 +9,13 @@ from concurrent.futures import ThreadPoolExecutor
 
 with open(
     join('src', 'files', 'facts.txt'), 
-    buffering=(16*1024*1024)
+    buffering=512
     ) as fd:
     facts = fd.read().splitlines()
 
 with open(
     join('src', 'files', 'dictionary.txt'), 
-    buffering=(16*1024*1024)
+    buffering=512
     ) as fd:
     dictionary = fd.read().splitlines()
 
@@ -56,7 +56,7 @@ async def get_entropy(
             specialc += 1
     
     if specialc > 0:
-        poolchar += len('@_!#$%^&*()<>?\\/|}{~:')
+        poolchar += 21 # special characters
     
     ent = math.log2(poolchar) * len(string)
     return ent
@@ -344,7 +344,7 @@ async def sendmsg(
                     attachments = [
                         selfcord.File(
                             data, 
-                            f'{randomstr(randint(1, 9))}.png'
+                            f'{await randomstr(randint(1, 9))}.png'
                         )
                     ]
 

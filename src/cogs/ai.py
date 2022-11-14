@@ -55,7 +55,7 @@ class AI(commands.Cog):
                 url = attachment.url
             
         if not url:
-            await sendmsg(ctx, '**Error, please add an image!**')
+            await sendmsg(ctx, '**Error**: `Please add an image`')
             return
 
         resp = await async_run(

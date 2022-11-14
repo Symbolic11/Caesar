@@ -38,7 +38,10 @@ class Crypto(commands.Cog):
 
         await sendmsg(
             ctx,
-            f'**Data**: `{msg}`\n**Entropy**: `{entropy}`'
+            (
+                f'**Data**: `{msg}`\n'
+                f'**Entropy**: `{entropy}`'
+            )
         )
 
     @commands.command(aliases=['seedgen'])
@@ -65,7 +68,10 @@ class Crypto(commands.Cog):
         
         await sendmsg(
             ctx,
-            f'**Seed**: `{seed}`\n**Entropy**: `{entropy}`',
+            (
+                f'**Seed**: `{seed}`\n'
+                f'**Entropy**: `{entropy}`'
+            ),
             False
         )
     
@@ -100,7 +106,10 @@ class Crypto(commands.Cog):
         
         await sendmsg(
             ctx,
-            f'**Password**: ||{password}||\n**Entropy**: `{entropy}`',
+            (
+                f'**Password**: ||{password}||\n'
+                f'**Entropy**: `{entropy}`'
+            ),
             False
         )
     
@@ -398,10 +407,10 @@ class Crypto(commands.Cog):
             return
 
         if len(key) != 32:
-            await sendmsg(ctx, 'Key must be be 32 characters!')
+            await sendmsg(ctx, '**Error**: `Key must be be 32 characters`')
         
         elif len(nonce) != 16:
-            await sendmsg(ctx, 'Nonce must be 16 characters!')
+            await sendmsg(ctx, '**Error**: `Nonce must be 16 characters`')
         
         else:
             cipher = Cipher(algorithms.AES(key.encode()), modes.OFB(nonce.encode()))
@@ -435,10 +444,10 @@ class Crypto(commands.Cog):
             return
 
         if len(key) != 32:
-            await sendmsg(ctx, 'Key must be be 32 characters!')
+            await sendmsg(ctx, '**Error**: `Key must be be 32 characters`')
         
         elif len(nonce) != 16:
-            await sendmsg(ctx, 'Nonce must be 16 characters!')
+            await sendmsg(ctx, '**Error**: `Nonce must be 16 characters`')
         
         else:
             cipher = Cipher(algorithms.AES(key.encode()), modes.OFB(nonce.encode()))

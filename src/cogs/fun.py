@@ -354,7 +354,7 @@ class Fun(commands.Cog):
     @commands.command()
     async def httpcat(self, ctx, *, code: int = 206) -> None:
         """
-        Returns a random http.cat image, if no code is provided else the code is used
+        Returns a random http.cat image, code is 206 if no code is provided else the given code is used
         """
 
         """
@@ -374,7 +374,7 @@ class Fun(commands.Cog):
             ctx,
             '',
             img=f'https://http.cat/{str(code)}', # http.cat returns the 404 image on invalid code, so no checking is needed :)
-            edit_after=False
+            delete_after=False
         )
     
     @commands.command()
@@ -534,7 +534,7 @@ class Fun(commands.Cog):
 
         await sendmsg(
             ctx,
-            f'https://discord.com/gifts/{randomstr(choice([16, 24]))}',
+            f'https://discord.com/gifts/{await randomstr(16)}',
             False
         )
     
@@ -714,7 +714,7 @@ class Fun(commands.Cog):
         
         await sendmsg(
             ctx,
-            edit_after=False,
+            delete_after=False,
             img=resp['message']
         )
     
@@ -742,7 +742,7 @@ class Fun(commands.Cog):
         
         await sendmsg(
             ctx,
-            edit_after=False,
+            delete_after=False,
             img=resp['image']
         )
     
@@ -770,7 +770,7 @@ class Fun(commands.Cog):
 
         await sendmsg(
             ctx,
-            edit_after=False,
+            delete_after=False,
             img=resp['link']
         )
     
@@ -1010,7 +1010,7 @@ class Fun(commands.Cog):
 
         await sendmsg(
             ctx,
-            edit_after=False,
+            delete_after=False,
             img=resp['url']
         )
     

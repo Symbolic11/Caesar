@@ -123,6 +123,7 @@ async def on_ready() -> None:
 
     print(f'Logged in as "{Fore.LIGHTBLUE_EX}{client.user}{Fore.RESET}" (id: {Fore.LIGHTBLUE_EX}{client.user.id}{Fore.RESET})')
     print(f'{Fore.LIGHTBLUE_EX}>{Fore.RESET} Extensions loaded: {str(len(client.extensions))}')
+    print(f'{Fore.LIGHTBLUE_EX}>{Fore.RESET} Commands: {str(len(client.commands))}')
     print(f'{Fore.LIGHTBLUE_EX}>{Fore.RESET} Guilds: {str(len(client.guilds))}')
     print(f'{Fore.LIGHTBLUE_EX}>{Fore.RESET} Friends: {str(len(client.user.friends))}')
     print(f'{Fore.LIGHTBLUE_EX}>{Fore.RESET} Started at: {str(Core.start_time)}')

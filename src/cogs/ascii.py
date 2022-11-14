@@ -51,15 +51,15 @@ class Ascii(commands.Cog):
                 url = attachment.url
             
             else:
-                await sendmsg(ctx, '**Error, image to ascii art converter only accepts jpg, jpeg and png files**')
+                await sendmsg(ctx, '**Error**: `Image to ascii art converter only accepts JPG, JPEG and PNG`')
                 return
             
         else:
-            await sendmsg(ctx, '**Error, please add an image!**')
+            await sendmsg(ctx, '**Error**: `Please add an image`')
             return
 
         if not url:
-            await sendmsg(ctx, '**Error, could not get image url!**')
+            await sendmsg(ctx, '**Error**: `Could not get image url`')
             return
 
         async with aiohttp.ClientSession() as cs:
@@ -90,7 +90,7 @@ class Ascii(commands.Cog):
         if len(ascii_image) > 2000:
             await sendmsg(
                 ctx,
-                '**Error: ASCII art is too big! Please try a smaller image or change the size!**'
+                '**Error**: `ASCII art is too big! Please try a smaller image or change the size`'
             )
 
         else:

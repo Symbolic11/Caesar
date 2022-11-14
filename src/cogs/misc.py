@@ -82,7 +82,7 @@ class Misc(commands.Cog):
             await sendmsg(ctx, f'**Cog unloaded**')
         
         else:
-            await sendmsg(ctx, f'**Failed to load uncog! Check console for more details**')
+            await sendmsg(ctx, f'**Error**: `Failed to load uncog! Check console for more details`')
 
             if not resp: # if resp is None it means the plugin wasn't found
                 resp = 'Extension not found'

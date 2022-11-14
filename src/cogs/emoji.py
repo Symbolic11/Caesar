@@ -80,7 +80,10 @@ class Emoji(commands.Cog):
 
             await sendmsg(
                 ctx, 
-                (f'<a:{emoji.name}:{emoji.id}>' if emoji.animated else f'<:{emoji.name}:{emoji.id}>') + ' downloaded'
+                (
+                    f'<a:{emoji.name}:{emoji.id}>' if emoji.animated else f'<:{emoji.name}:{emoji.id}>'
+                    ' downloaded'
+                )
             )
             
         except Exception as e:
@@ -125,7 +128,10 @@ class Emoji(commands.Cog):
 
             await sendmsg(
                 ctx, 
-                (f'<a:{emoji.name}:{emoji.id}>' if emoji.animated else f'<:{emoji.name}:{emoji.id}>') + ' added'
+                (
+                    f'<a:{emoji.name}:{emoji.id}>' if emoji.animated else f'<:{emoji.name}:{emoji.id}>'
+                    ' added'
+                )
             )
             
         except Exception as e:
@@ -191,7 +197,10 @@ class Emoji(commands.Cog):
 
             await sendmsg(
                 ctx, 
-                (f'<a:{emoji.name}:{emoji.id}>' if emoji.animated else f'<:{emoji.name}:{emoji.id}>') + ' added'
+                (
+                    f'<a:{emoji.name}:{emoji.id}>' if emoji.animated else f'<:{emoji.name}:{emoji.id}>'
+                    ' added'
+                )
             )
             
         except Exception as e:
