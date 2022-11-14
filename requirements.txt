@@ -1,0 +1,14 @@
+colorama
+requests
+brotlipy
+cchardet
+orjson
+psutil
+pygame
+py-cpuinfo
+distro
+pillow
+replicate
+aiohttp
+youtube-dl
+pillow
