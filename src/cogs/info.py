@@ -105,12 +105,12 @@ class Info(commands.Cog):
 
         latency = round(self.client.latency * 1000)
         msg = (
-            '**Repository**: `https://github.com/sym-p1337/Caesar`'
-            f'\n**Author**: `Sym-p1337`'
-            f'\n**Ping**: `{str(latency)} ms`'
-            f'\n**Uptime**: `{str(get_time(Core.start_time))}`'
-            f'\n**Connected**: `{str(get_time(Core.connect_time))}`'
-            f'\n**Extensions loaded**: `{str(len(self.client.extensions))}`'
+            '**Repository**: `https://github.com/Symbolic11/Caesar`\n'
+            f'**Author**: `Symbolic`\n'
+            f'**Ping**: `{str(latency)} ms`\n'
+            f'**Uptime**: `{str(get_time(Core.start_time))}`\n'
+            f'**Connected**: `{str(get_time(Core.connect_time))}`\n'
+            f'**Extensions loaded**: `{str(len(self.client.extensions))}`'
         )
 
         await sendmsg(

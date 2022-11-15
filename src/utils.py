@@ -258,7 +258,7 @@ async def load_cogs(
                 await client.load_extension(file)
 
             except Exception as e:
-                print(f'Exception while loading cog "{file}"> {str(e).rstrip()}\n')
+                print(f'> Exception while loading cog "{file}": {str(e).rstrip()}\n')
                 continue
 
 async def unload_cog(
@@ -338,7 +338,7 @@ async def sendmsg(
             async with session.get(img) as resp:
                 
                 if resp.status != 200:
-                    return print(f'Error, could not download image! Response code: {str(resp.status)}')
+                    return print(f'> Error, could not download image! Response code: {str(resp.status)}')
                 
                 else:
                     data = io.BytesIO(await resp.read())

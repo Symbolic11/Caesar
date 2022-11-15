@@ -87,7 +87,7 @@ class Misc(commands.Cog):
             if not resp: # if resp is None it means the plugin wasn't found
                 resp = 'Extension not found'
 
-            print(f'Exception occurred while unloading extension> {str(resp)}')
+            print(f'> Exception occurred while unloading extension: {str(resp)}')
     
     @commands.command(aliases=['reloadcogs'])
     async def loadcogs(self, ctx) -> None:

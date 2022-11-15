@@ -907,6 +907,10 @@ class Fun(commands.Cog):
         or "nationalist" in user.name \
         or "sigma" in user.name:
             dong = "="*randint(50, 100)
+
+        elif user.id == self.client.user.id:
+            dong = '='*200
+
         else:
             dong = "="*randint(1, 50)
 
@@ -1013,6 +1017,7 @@ class Fun(commands.Cog):
 
         await sendmsg(
             ctx,
+            '',
             delete_after=False,
             img=resp['url']
         )
@@ -1145,8 +1150,14 @@ class Fun(commands.Cog):
 
         shuffle(self.emails); shuffle(passwords)
 
-        rand_cve = f'CVE-{str(randint(1995, datetime.now().year))}-{"".join(str(randint(0, 9)) for _ in range(4))}'
-        rand_ip = f'{str(randint(0, 256))}.{str(randint(0, 256))}.{str(randint(0, 256))}.{str(randint(0, 256))}'
+        rand_cve = (
+            'CVE-'
+            +str(randint(1995, datetime.now().year))
+            +'-'
+            +"".join(str(randint(0, 9)) for _ in range(4))
+        )
+
+        rand_ip = '.'.join([str(randint(0, 256)) for _ in range(4)])
 
         msgs = [
             f'Scanning system for vulnerabilities.',

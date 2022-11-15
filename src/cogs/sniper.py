@@ -124,7 +124,7 @@ class Snipers(commands.Cog):
                         ) as res:
 
                         if res.status == 200:
-                            print(f'\nClaimed nitro code in {message.guild}')
+                            print(f'\n> Claimed nitro code in {message.guild}')
             
         # TODO: implement embed giveaway joining
         if await is_giveaway(message) and self.giveawaysniper_toggle:
@@ -136,13 +136,13 @@ class Snipers(commands.Cog):
                 giveaway_bots[message.author.id]['emoji']
             )
 
-            print(f'\nJoined giveaway in {message.guild}')
+            print(f'\n> Joined giveaway in {message.guild}')
 
         if message.author.id in giveaway_bots \
         and (f'congratulations <@{self.client.user.id}>' in message.content.lower() \
             or f'<@{self.client.user.id}> won' in message.content):
 
-            print(f'\nWon giveaway in "{message.guild}"')
+            print(f'\n> Won giveaway in "{message.guild}"')
         
         if await is_slotbot(message) and self.slotbotsniper_toggle:
 
@@ -152,7 +152,7 @@ class Snipers(commands.Cog):
             try:
                 await message.channel.send('~grab')
 
-                print(f'\nGrabbed slotbot drop in {message.guild}')
+                print(f'\n> Grabbed slotbot drop in {message.guild}')
             except Exception:
                 pass
     

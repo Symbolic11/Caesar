@@ -46,7 +46,7 @@ class Backup(commands.Cog):
         if ctx.message.author.id != self.client.user.id:
             return
 
-        for cmd in ['friends', 'guilds']:
+        for cmd in ['friends', 'guilds']: # basically invokes all backup commands
             await ctx.invoke(self.client.get_command(f'backup_{cmd}'))
     
     @commands.command(aliases=['guilds-backup', 'backup-servers', 'backup-guilds'])
@@ -132,6 +132,7 @@ class Backup(commands.Cog):
         
         if not msg:
             await sendmsg(ctx, f'**Stored guilds in**: `{dest}`')
+            
         else:
             await msg.edit(content=f'**Stored guilds in**: `{dest}`')
             await asyncio.sleep(uniform(3, 6))
@@ -193,6 +194,7 @@ class Backup(commands.Cog):
         
         if not msg:
             await sendmsg(ctx, f'**Stored friends in**: `{dest}`')
+
         else:
             await msg.edit(content=f'**Stored friends in**: `{dest}`')
             await asyncio.sleep(uniform(3, 6))

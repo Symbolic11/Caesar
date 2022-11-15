@@ -41,7 +41,7 @@ class Nsfw(commands.Cog):
         async with aiohttp.ClientSession() as cs:
             async with cs.get(f"https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=15&json=1&tags={tag}") as res:
                 if res.status != 200:
-                    print(f'Could not fetch image from rule34: {res.status}')
+                    print(f'> Could not fetch image from rule34: {res.status}')
                     return ''
 
                 res = await res.json()

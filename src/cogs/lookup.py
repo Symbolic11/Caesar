@@ -14,6 +14,67 @@ class Lookup(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
     
+    @commands.command()
+    async def instagram(self, ctx, *, username) -> None:
+        """
+        Returns the information from the specified instagram username
+        """
+
+        """
+        await instagram(context, username) -> nothing
+
+        :param ctx object: Context
+        :param username str: Username of the instagram account
+        :returns None: Nothing
+        """
+
+        if ctx.message.author.id != self.client.user.id:
+            return
+        
+        if not username.startswith('http'):
+            username = f'https://www.instagram.com/{username}/'
+        
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get(username) as resp:
+                res = await resp.read()
+        
+        if resp.status != 200:
+            return await sendmsg(ctx, '**Error**: `Got unknown response code from instagram`')
+        
+        try:
+            s = bs(res, "html.parser")
+
+            meta = s.find(
+                "meta",
+                property="og:description"
+            )
+
+            img = s.find(
+                "meta",
+                property="og:image"
+            )
+            
+            s = meta.attrs['content']
+            s0 = s.split("-")[0].split(" ")
+            s1 = s.split('-')[1].split('from ')[1].split('(@')[0].strip()
+
+            msg = (
+                f'**Username**: `{s1}`\n'
+                f'**Followers**: `{s0[0]}`\n'
+                f'**Following**: `{s0[2]}`\n'
+                f'**Public posts**: `{s0[4]}`\n'
+                f'**Avatar url**: `{img.attrs["content"]}`'
+            )
+        except Exception as e:
+            msg = (
+                f'**Error**: `{str(e).rstrip()}`'
+            )
+        
+        await sendmsg(
+            ctx,
+            msg
+        )
+     
     @commands.command(aliases=['lookupip'])
     async def iplookup(self, ctx, *, ip) -> None:
         """
