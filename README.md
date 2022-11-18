@@ -10,6 +10,10 @@
    <img alt="top language" src="https://img.shields.io/github/languages/top/Symbolic11/Caesar">
 </div>
 
+# !! READ ME FIRST !!
+## I got banned from discord. lol. All work on this project will be stopped, and the repository will be archived. 
+## ps: fuck you discord
+
 # About
 My own personal selfbot, free and opensource for ever. Lots of commands & weekly (if not daily) updates
 
